@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny catch-all rule
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Health-check / connection validation
+    match /test/connection {
+      allow read: if true;
+    }
+
+    // Secure user profile documents
+    match /users/{userId} {
+      allow read, write: if (request.auth != null && request.auth.uid == userId) || isAdmin();
+    }
+
+    // Active Member Chat Room (Standard)
+    match /community_chat_standard/{messageId} {
+      allow read, create: if request.auth != null || true;
+      allow update, delete: if isAdmin();
+    }
+
+    // VIP Elite Chat Room
+    match /community_chat_vip/{messageId} {
+      allow read, create: if request.auth != null || true;
+      allow update, delete: if isAdmin();
+    }
+
+    function isAdmin() {
+      return request.auth != null && (request.auth.token.email == 'v1kwanny1@gmail.com' || request.auth.token.email == 'mindsafe.uk@outlook.com');
+    }
+  }
+}

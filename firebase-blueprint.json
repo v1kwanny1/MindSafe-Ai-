@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information, name, email and elite subscription tier status.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique user ID from Firebase Auth."
+        },
+        "email": {
+          "type": "string",
+          "description": "The user's email address."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Custom user display name or warrior callsign."
+        },
+        "isEliteUser": {
+          "type": "boolean",
+          "description": "Subscription tier status indicating if user has upgraded to Elite."
+        },
+        "focusArea": {
+          "type": "string",
+          "description": "The user's current resilience focus area (e.g. Anxiety Management, Emotional Balance, Focus & Drive, Sleep & Rest, Grief & Healing)."
+        },
+        "dailyTipEmailEnabled": {
+          "type": "boolean",
+          "description": "Whether the user receives daily morning Resilience Tip emails."
+        },
+        "lastDailyTipSentAt": {
+          "type": "number",
+          "description": "Timestamp when the last daily morning resilience tip email was sent."
+        },
+        "theme": {
+          "type": "string",
+          "description": "User preferred UI theme preset (e.g. calm-sea, forest-grounding, warm-sunset, midnight-obsidian)."
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Timestamp of profile creation."
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Timestamp of last profile update."
+        }
+      },
+      "required": ["uid", "email", "isEliteUser"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "User",
+      "description": "Documents containing premium subscription tier data and personalized display names."
+    }
+  }
+}

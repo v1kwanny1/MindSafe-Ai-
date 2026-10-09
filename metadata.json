@@ -1,0 +1,6 @@
+{
+  "name": "MindSafe AI",
+  "description": "An elite mental resilience companion designed to provide secure, empathetic coaching and support through life's hardest battles.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
